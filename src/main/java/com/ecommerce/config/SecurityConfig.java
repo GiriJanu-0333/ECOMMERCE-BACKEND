@@ -6,6 +6,7 @@ import com.ecommerce.security.CustomAuthenticationEntryPoint;
 import com.ecommerce.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -55,6 +56,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/authenticate", "/register").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/products/**").permitAll()
                         .anyRequest().authenticated()
                 );
 
